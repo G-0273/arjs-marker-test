@@ -35,7 +35,7 @@
     <a-scene
       id="ar-scene"
       embedded
-      arjs="sourceType: webcam; debugUIEnabled: false;"
+      arjs="sourceType: webcam; debugUIEnabled: true;"  <!-- Enable debug UI to check issues -->
     >
       <a-assets>
         <video
@@ -70,7 +70,8 @@
         startButton.style.display = 'none';
         scene.style.display = 'block';
         try {
-          await video.play();
+          video.load();  <!-- Make sure video is loaded -->
+          await video.play();  <!-- Try to play the video -->
         } catch (e) {
           console.warn("Autoplay blocked:", e);
         }
@@ -78,4 +79,3 @@
     </script>
   </body>
 </html>
-
