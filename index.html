@@ -35,7 +35,7 @@
     <a-scene
       id="ar-scene"
       embedded
-      arjs="sourceType: webcam; debugUIEnabled: true;"  <!-- Enable debug UI to check issues -->
+      arjs="sourceType: webcam; debugUIEnabled: true;"  <!-- Enable debug UI -->
     >
       <a-assets>
         <video
@@ -48,6 +48,12 @@
         ></video>
       </a-assets>
 
+      <!-- Test with Hiro marker (for debugging) -->
+      <a-marker preset="hiro">
+        <a-entity position="0 0 0" geometry="primitive: box; width: 1; height: 1; depth: 1;" material="color: red;"></a-entity>
+      </a-marker>
+
+      <!-- Or use your custom marker -->
       <a-marker type="pattern" url="./assets/marker.patt">
         <a-plane
           position="0 0 0"
@@ -70,8 +76,8 @@
         startButton.style.display = 'none';
         scene.style.display = 'block';
         try {
-          video.load();  <!-- Make sure video is loaded -->
-          await video.play();  <!-- Try to play the video -->
+          video.load();
+          await video.play();
         } catch (e) {
           console.warn("Autoplay blocked:", e);
         }
